@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout Page</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: linear-gradient(135deg, #a0c4ff, #bdb2ff);
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            color: #333;
+        }
+        
+        .container {
+            background-color: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            width: 100%;
+            max-width: 400px;
+            text-align: center;
+            display: none;
+        }
+        
+        .container.active {
+            display: block;
+        }
+        
+        h2 {
+            margin-bottom: 20px;
+            color: #555;
+        }
+        
+        .form-group {
+            margin-bottom: 15px;
+            text-align: left;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 5px;
+            color: #777;
+        }
+        
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+        
+        .form-group button {
+            width: 100%;
+            padding: 10px;
+            background-color: #a0c4ff;
+            border: none;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s;
+            margin-top: 10px;
+        }
+        
+        .form-group button:hover {
+            background-color: #bdb2ff;
+        }
+        
+        .pix-container {
+            background: linear-gradient(135deg, #cde7ff, #c3ddff);
+            padding: 30px;
+            border-radius: 10px;
+            width: 100%;
+            max-width: 400px;
+            color: #333;
+            text-align: center;
+            display: none;
+        }
+        
+        .pix-container.active {
+            display: block;
+        }
+        
+        .pix-code {
+            font-size: 14px;
+            word-break: break-all;
+            background-color: #f1f1f1;
+            color: #333;
+            padding: 10px;
+            border-radius: 5px;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="container checkout-container active">
+        <h2>Finalizar Compra</h2>
+        <form id="checkoutForm">
+            <div class="form-group">
+                <label for="name">Nome Completo</label>
+                <input type="text" id="name" name="name" required>
+            </div>
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+            </div>
+            <div class="form-group">
+                <label for="address">Endereço</label>
+                <input type="text" id="address" name="address" required>
+            </div>
+            <div class="form-group">
+                <label for="city">Cidade</label>
+                <input type="text" id="city" name="city" required>
+            </div>
+            <div class="form-group">
+                <label for="state">Estado</label>
+                <input type="text" id="state" name="state" required>
+            </div>
+            <div class="form-group">
+                <label for="zip">CEP</label>
+                <input type="text" id="zip" name="zip" required>
+            </div>
+            <div class="form-group">
+                <button type="submit">Comprar</button>
+            </div>
+        </form>
+    </div>
+
+    <div class="container pix-container">
+        <h2>Pague com PIX</h2>
+        <p>Use o código PIX abaixo para completar o pagamento:</p>
+        <div class="pix-code">
+            00020101021226910014br.gov.bcb.pix2569qrcode.pix.celcoin.com.br/pixqrcode/v2/e7ebc2a967331d51dfd096119d0a475204000053039865802BR5923HKP PAY PAGAMENTOS LTDA6008Sao Luis62070503***630420AD
+        </div>
+    </div>
+
+    <script>
+        document.getElementById('checkoutForm').addEventListener('submit', function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById('name').value;
+            let email = document.getElementById('email').value;
+            let address = document.getElementById('address').value;
+            let city = document.getElementById('city').value;
+            let state = document.getElementById('state').value;
+            let zip = document.getElementById('zip').value;
+
+            if (!name || !email || !address || !city || !state || !zip) {
+                alert('Por favor, preencha todos os campos.');
+                return;
+            }
+
+            document.querySelector('.checkout-container').classList.remove('active');
+            document.querySelector('.pix-container').classList.add('active');
+        });
+    </script>
+</body>
+
+</html>
